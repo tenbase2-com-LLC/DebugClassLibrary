@@ -1,4 +1,4 @@
-# WaitClassLibrary
+# DebugClassLibrary
 
 ## Setup
 
@@ -24,6 +24,27 @@ import DebugLibrary.*;
 public void SetDebug(boolean bDebug1)
 {
     bDebug = bDebug1;
-    postEvent(dc.sde.post(bDebug1));
+    postEvent(cap1.dc.sde.post(bDebug1));
 }
+
+public DebugBeliefSet GetDebugBeliefSet()
+{
+    return dc.debug;
+}
+```
+
+### Add the Import to a JACK Plan
+
+```java
+import DebugLibrary.*;
+```
+
+### Add this to a JACK Plan Reasoning Method
+
+```java
+logical boolean $debug;
+DebugBeliefSet debug = enc.GetDebugBeliefSet();
+debug.get(0, $debug).next();
+
+boolean bDebug = $debug.as_boolean();
 ```
